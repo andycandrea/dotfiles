@@ -93,8 +93,8 @@ set number
 set numberwidth=5
 
 " Tab completion
-" will insert tab at beginning of line,
-" will use completion if not at beginning
+" Will insert tab at beginning of line,
+" Will use completion if not at beginning
 set wildmode=list:longest,list:full
 function! InsertTabWrapper()
   let col = col('.') - 1
