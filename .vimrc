@@ -155,6 +155,9 @@ set spellfile=$HOME/.vim-spell-en.utf-8.add
 " Always use vertical diffs
 set diffopt+=vertical
 
+" Yank to system clipboard
+set clipboard=unnamedplus,autoselect
+
 " Local config
 if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
