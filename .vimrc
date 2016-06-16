@@ -155,9 +155,6 @@ set spellfile=$HOME/.vim-spell-en.utf-8.add
 " Always use vertical diffs
 set diffopt+=vertical
 
-" Yank to system clipboard
-set clipboard=unnamedplus,autoselect
-
 " Local config
 if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
@@ -170,6 +167,9 @@ Bundle 'rking/ag.vim'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'scrooloose/nerdtree'
 Plugin 'rizzatti/dash.vim'
+Plugin 'tommcdo/vim-lion'
+Plugin 'tpope/vim-commentary'
+Plugin 'elixir-lang/vim-elixir'
 
 let g:vim_markdown_folding_disabled=1
 map <C-n> :NERDTreeToggle<CR>

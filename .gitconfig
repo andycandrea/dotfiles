@@ -19,11 +19,12 @@
   st = status
   up = !git fetch origin && git rebase origin/master
 [core]
-	excludesfile = /Users/andy/.gitignore
+  excludesfile = /Users/andy/.gitignore
   autocrlf = input
+  pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
 [merge]
   ff = only
-	conflictstyle = diff3
+  conflictstyle = diff3
 [include]
   path = .gitconfig.local
 [commit]
@@ -31,11 +32,13 @@
 [fetch]
   prune = true
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path =
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
 [user]
-	name = Andy Andrea
-	email = andy.andrea@scimedsolutions.com
+  name = Andy Andrea
+  email = andy.andrea@scimedsolutions.com
+[diff]
+  compactionHeuristic = true
