@@ -2,6 +2,10 @@
 export VISUAL=vim
 export EDITOR=$VISUAL
 
+export POSTGRES_USER=andy
+export POSTGRES_PASS=
+export APP_HOST=localhost
+
 # ensure dotfiles bin directory is loaded first
 # export PATH="$HOME/.bin:$PATH"
 
@@ -23,4 +27,3 @@ export PATH=$PATH:$DYLD_LIBRARY_PATH
 
 export PATH="/Users/andy/.bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin:$PATH"
 export PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH"
-export PATH="/usr/local/bin:$PATH"

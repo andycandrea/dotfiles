@@ -42,3 +42,5 @@
   email = andy.andrea@scimedsolutions.com
 [diff]
   compactionHeuristic = true
+[interactive]
+  diffFilter = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight
