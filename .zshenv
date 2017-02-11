@@ -12,6 +12,9 @@ export APP_HOST=localhost
 # mkdir .git/safe in the root of repositories you trust
 export PATH=".git/safe/../../bin:$PATH"
 
+# For RDKit
+export RDBASE=/usr/local/share/RDKit
+
 # Local config
 [[ -f ~/.zshenv.local ]] && source ~/.zshenv.local
 
