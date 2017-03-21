@@ -1,6 +1,7 @@
 " Use Vim settings, rather then Vi settings. This setting must be as early as
 " possible, as it has side effects.
 set nocompatible
+
 set background=dark
 
 filetype plugin indent on
@@ -17,7 +18,7 @@ set undofile
 set undodir=~/.vim/undo
 
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
-" Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
+" Dropbox or kept in Git and managed outside of dotfiles using rcm.
 set spellfile=$HOME/.vim-spell-en.utf-8.add
 
 " Softtabs, 2 spaces
@@ -84,6 +85,7 @@ highlight Folded  guibg=#0A0A0A guifg=#9090D0
 " Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 " call plug#end()
 
+" Keep plugins in `~/.vimrc.bundles`
 if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
 endif
@@ -99,10 +101,6 @@ augroup vimrcEx
     \   exe "normal g`\"" |
     \ endif
 
-  " Cucumber navigation commands
-  autocmd User Rails Rnavcommand step features/step_definitions -glob=**/* -suffix=_steps.rb
-  autocmd User Rails Rnavcommand config config -glob=**/* -suffix=.rb -default=routes
-
   " Set syntax highlighting for specific file types
   autocmd BufRead,BufNewFile Appraisals set filetype=ruby
   autocmd BufRead,BufNewFile *.md set filetype=markdown
@@ -116,6 +114,7 @@ augroup vimrcEx
   " Allow stylesheets to autocomplete hyphenated words
   autocmd FileType css,scss,sass setlocal iskeyword+=-
 
+  " Remove trailing whitespace on write
   autocmd BufWritePre * :%s/\s\+$//e
 augroup END
 
@@ -123,12 +122,6 @@ augroup END
 if executable('ag')
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
 endif
 
 " Tab completion
@@ -165,15 +158,23 @@ nnoremap <Leader>r :RunInInteractiveShell<space>
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
 
-" configure syntastic syntax checking to check on open as well as save
+" Configure Syntastic syntax checking to check on open as well as save
 let g:syntastic_check_on_open=1
+
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+
+" Set up Syntastic linting
+let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_javascript_checkers = ['eslint']
 
+" Don't fold sections in Markdown
 let g:vim_markdown_folding_disabled=1
+
+" Open NERDTree with Ctrl + n
 map <C-n> :NERDTreeToggle<CR>
+
+" Open fzf with Ctrl + p
 map <C-p> :Files<CR>
 
 " Local config

@@ -40,3 +40,4 @@ eval "$(rbenv init -)"
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
 export PATH="/usr/local/bin:$PATH"
+export PATH="$HOME/.pyenv/shims:$PATH"
