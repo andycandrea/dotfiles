@@ -4,13 +4,10 @@ set nocompatible
 
 set background=dark
 
-filetype plugin indent on
-
 " Leader
-let mapleader = " "
+let mapleader = ' '
 
-" Switch between the last two files
-nnoremap <leader><leader> <c-^>
+filetype plugin indent on
 
 " Set undo file to allow undoing even after closing and reopening vim
 silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
@@ -25,7 +22,7 @@ set spellfile=$HOME/.vim-spell-en.utf-8.add
 set softtabstop=2
 set tabstop=2
 set shiftwidth=2
-set shiftround
+set shiftround  " Indent to the next column that's a multiple of shiftwidth
 set expandtab
 set backspace=2 " Backspace deletes like most programs in insert mode
 set smarttab
@@ -37,43 +34,30 @@ set numberwidth=5
 " General preferences
 set nobackup
 set nowritebackup
-set noswapfile        " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
-set history=50
-set ruler             " show the cursor position all the time
-set showcmd           " display incomplete commands
-set incsearch         " do incremental searching
-set laststatus=2      " Always display the status line
-set autowrite         " Automatically :write before running commands
-set lazyredraw        " Only redraw screen when necessary
-set diffopt+=vertical " Always use vertical diffs
-
-" Show all matching options for file completion
-set wildmode=list:longest,list:full
-
-" Display extra whitespace
-set list listchars=tab:»·,trail:·
+set noswapfile
+set history=50                      " Keep 50 entries in history tables
+set ruler                           " Show the cursor position at all times
+set showcmd                         " Display incomplete commands
+set incsearch                       " Incremental searching
+set laststatus=2                    " Always display the status line
+set autowrite                       " Automatically :write before running commands
+set lazyredraw                      " Only redraw screen when necessary
+set diffopt+=vertical               " Always use vertical diffs
+set wildmode=list:longest,list:full " Show all matching options for file completion
+set list listchars=tab:»·,trail:·   " Display extra whitespace
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
+
+" Resize panes when window size changes
+autocmd VimResized * :wincmd =
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if (&t_Co > 2 || has('gui_running')) && !exists('syntax_on')
   syntax enable
 endif
-
-" Quicker window movement
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
-
-" Get off my lawn
-nnoremap <Left> :echoe 'Use h'<CR>
-nnoremap <Right> :echoe 'Use l'<CR>
-nnoremap <Up> :echoe 'Use k'<CR>
-nnoremap <Down> :echoe 'Use j'<CR>
 
 " Color scheme
 highlight NonText guibg=#060606
@@ -89,6 +73,20 @@ highlight Folded  guibg=#0A0A0A guifg=#9090D0
 if filereadable(expand('~/.vimrc.bundles'))
   source ~/.vimrc.bundles
 endif
+
+" Tab completion
+" Will insert tab at beginning of line,
+" Will use completion if not at beginning
+function! InsertTabWrapper()
+  let col = col('.') - 1
+  if !col || getline('.')[col - 1] !~ '\k'
+    return "\<tab>"
+  else
+    return "\<c-p>"
+  endif
+endfunction
+inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <S-Tab> <c-n>
 
 augroup vimrcEx
   autocmd!
@@ -112,7 +110,7 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile *.md setlocal textwidth=80
 
   " Allow stylesheets to autocomplete hyphenated words
-  autocmd FileType css,scss,sass setlocal iskeyword+=-
+  autocmd FileType css,scss,sass setlocal iskeyword += -
 
   " Remove trailing whitespace on write
   autocmd BufWritePre * :%s/\s\+$//e
@@ -124,28 +122,8 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
-" Tab completion
-" Will insert tab at beginning of line,
-" Will use completion if not at beginning
-function! InsertTabWrapper()
-  let col = col('.') - 1
-  if !col || getline('.')[col - 1] !~ '\k'
-    return "\<tab>"
-  else
-    return "\<c-p>"
-  endif
-endfunction
-inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <S-Tab> <c-n>
-
-" Resize panes when window size changes
-autocmd VimResized * :wincmd =
-
-" Exclude Javascript files in :Rtags via rails.vim due to warnings when parsing
+" Exclude JavaScript files in :Rtags via rails.vim due to warnings when parsing
 let g:Tlist_Ctags_Cmd = "ctags --exclude='*.js'"
-
-" vim-tags settings
-let g:vim_tags_ctags_binary = 'usr/local/bin/ctags'
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
@@ -153,7 +131,9 @@ let g:html_indent_tags = 'li\|p'
 " Configure Syntastic syntax checking to check on open as well as save
 let g:syntastic_check_on_open = 1
 
+" Ignore inconsequential errors
 let g:syntastic_html_tidy_ignore_errors = [' proprietary attribute "ng-']
+let g:syntastic_eruby_ruby_quiet_messages = { 'regex': 'possibly useless use of a variable in void context' }
 
 " Set up Syntastic linting
 let g:syntastic_ruby_checkers = ['rubocop']
@@ -165,24 +145,37 @@ let g:vim_markdown_folding_disabled = 1
 
 " Open NERDTree with Ctrl + n
 map <C-n> :NERDTreeToggle<CR>
-
 " Open fzf with Ctrl + p
 map <C-p> :Files<CR>
-
 " Open buffers with Ctrl + b
 map <C-b> :Buffers<CR>
 
-" Run commands that require an interactive shell
-nnoremap <Leader>r :RunInInteractiveShell<space>
-
 " Index ctags from any project, including those outside Rails
 map <Leader>ct :!ctags -R .<CR>
+
+" Run commands that require an interactive shell
+nnoremap <Leader>r :RunInInteractiveShell<space>
 
 " vim-test mappings
 nnoremap <Leader>t :TestFile<CR>
 nnoremap <Leader>l :TestLast<CR>
 
+" Switch between the last two files
+nnoremap <leader><leader> <c-^>
+
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+" Get off my lawn
+nnoremap <Left> :echoe 'Use h'<CR>
+nnoremap <Right> :echoe 'Use l'<CR>
+nnoremap <Up> :echoe 'Use k'<CR>
+nnoremap <Down> :echoe 'Use j'<CR>
+
 " Local config
-if filereadable($HOME . "/.vimrc.local")
+if filereadable($HOME . '/.vimrc.local')
   source ~/.vimrc.local
 endif
