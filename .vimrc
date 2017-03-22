@@ -169,6 +169,9 @@ map <C-n> :NERDTreeToggle<CR>
 " Open fzf with Ctrl + p
 map <C-p> :Files<CR>
 
+" Open buffers with Ctrl + b
+map <C-b> :Buffers<CR>
+
 " Run commands that require an interactive shell
 nnoremap <Leader>r :RunInInteractiveShell<space>
 
