@@ -144,6 +144,8 @@ autocmd VimResized * :wincmd =
 " Exclude Javascript files in :Rtags via rails.vim due to warnings when parsing
 let g:Tlist_Ctags_Cmd = "ctags --exclude='*.js'"
 
+" vim-tags settings
+let g:vim_tags_ctags_binary = 'usr/local/bin/ctags'
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
@@ -172,6 +174,10 @@ nnoremap <Leader>r :RunInInteractiveShell<space>
 
 " Index ctags from any project, including those outside Rails
 map <Leader>ct :!ctags -R .<CR>
+
+" vim-test mappings
+nnoremap <Leader>t :TestFile<CR>
+nnoremap <Leader>l :TestLast<CR>
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")

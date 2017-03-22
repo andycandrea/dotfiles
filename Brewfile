@@ -89,6 +89,7 @@ brew 'pyenv-virtualenv'
 brew 'qt5'
 brew 'reattach-to-user-namespace'
 brew 'redis'
+brew 'ripgrep'
 brew 'rlwrap'
 brew 'ruby-build', args: ['HEAD']
 brew 'rust'

@@ -10,27 +10,32 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Define bundles via Github repos
-Plugin 'christoomey/vim-run-interactive'
-Plugin 'croaky/vim-colors-github'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'pbrisbin/vim-mkdir'
-Plugin 'scrooloose/syntastic'
-Plugin 'slim-template/vim-slim'
-Plugin 'tpope/vim-bundler'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
-Plugin 'vim-scripts/ctags.vim'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tommcdo/vim-lion'
-Plugin 'tpope/vim-commentary'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'junegunn/fzf'
+" Note that ag and rg are both installed because rg is faster, but ag.vim has
+" some convenient features that vim-ripgrep does not (such as sorting results
+" by directory)
+Plugin 'christoomey/vim-run-interactive' " Provide an interactive shell
+Plugin 'croaky/vim-colors-github'        " GitHub colorscheme
+Plugin 'elixir-lang/vim-elixir'          " Elixir support
+Plugin 'janko-m/vim-test'                " Run tests from vim
+Plugin 'jremmen/vim-ripgrep'             " Ripgrep
+Plugin 'junegunn/fzf'                    " Fuzzy file finder
 Plugin 'junegunn/fzf.vim'
-Plugin 'rking/ag.vim'
+Plugin 'kchmck/vim-coffee-script'        " CoffeeScript support
+Plugin 'pbrisbin/vim-mkdir'              " Automatically create nonexistent directories on write
+Plugin 'plasticboy/vim-markdown'         " Markdown support
+Plugin 'rking/ag.vim'                    " The Silver Searcher
+Plugin 'scrooloose/nerdtree'             " File tree explorer
+Plugin 'scrooloose/syntastic'            " Syntax checking
+Plugin 'slim-template/vim-slim'          " Slim support
+Plugin 'tommcdo/vim-lion'                " Align text by character
+Plugin 'tpope/vim-bundler'               " Bundler support
+Plugin 'tpope/vim-commentary'            " Quick commenting
+Plugin 'tpope/vim-endwise'               " Automatically close blocks
+Plugin 'tpope/vim-fugitive'              " Add git support
+Plugin 'tpope/vim-rails'                 " Rails support
+Plugin 'tpope/vim-repeat'                " Allow plugin commands to be repeated with `.`
+Plugin 'tpope/vim-surround'              " Easy surrounding character modifications
+Plugin 'vim-scripts/ctags.vim'           " Ctags support
 
 if filereadable(expand('~/.vimrc.bundles.local'))
   source ~/.vimrc.bundles.local
