@@ -15,18 +15,15 @@ Plugin 'gmarik/Vundle.vim'
 " by directory)
 Plugin 'christoomey/vim-run-interactive' " Provide an interactive shell
 Plugin 'croaky/vim-colors-github'        " GitHub colorscheme
-Plugin 'elixir-lang/vim-elixir'          " Elixir support
 Plugin 'janko-m/vim-test'                " Run tests from vim
 Plugin 'jremmen/vim-ripgrep'             " Ripgrep
 Plugin 'junegunn/fzf'                    " Fuzzy file finder
 Plugin 'junegunn/fzf.vim'
-Plugin 'kchmck/vim-coffee-script'        " CoffeeScript support
 Plugin 'pbrisbin/vim-mkdir'              " Automatically create nonexistent directories on write
-Plugin 'plasticboy/vim-markdown'         " Markdown support
 Plugin 'rking/ag.vim'                    " The Silver Searcher
 Plugin 'scrooloose/nerdtree'             " File tree explorer
 Plugin 'scrooloose/syntastic'            " Syntax checking
-Plugin 'slim-template/vim-slim'          " Slim support
+Plugin 'sheerun/vim-polyglot'            " Support for lots of different filetypes
 Plugin 'tommcdo/vim-lion'                " Align text by character
 Plugin 'tpope/vim-bundler'               " Bundler support
 Plugin 'tpope/vim-commentary'            " Quick commenting
