@@ -27,7 +27,7 @@ set tabstop=2
 set shiftwidth=2
 set shiftround
 set expandtab
-set backspace=2   " Backspace deletes like most programs in insert mode
+set backspace=2 " Backspace deletes like most programs in insert mode
 set smarttab
 
 " Numbers
@@ -59,7 +59,7 @@ set splitright
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
-if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
+if (&t_Co > 2 || has('gui_running')) && !exists('syntax_on')
   syntax enable
 endif
 
@@ -70,10 +70,10 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
 " Get off my lawn
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
+nnoremap <Left> :echoe 'Use h'<CR>
+nnoremap <Right> :echoe 'Use l'<CR>
+nnoremap <Up> :echoe 'Use k'<CR>
+nnoremap <Down> :echoe 'Use j'<CR>
 
 " Color scheme
 highlight NonText guibg=#060606
@@ -86,7 +86,7 @@ highlight Folded  guibg=#0A0A0A guifg=#9090D0
 " call plug#end()
 
 " Keep plugins in `~/.vimrc.bundles`
-if filereadable(expand("~/.vimrc.bundles"))
+if filereadable(expand('~/.vimrc.bundles'))
   source ~/.vimrc.bundles
 endif
 
@@ -97,7 +97,7 @@ augroup vimrcEx
   " Don't do it for commit messages, when the position is invalid, or when
   " inside an event handler (happens when dropping a file on gvim).
   autocmd BufReadPost *
-    \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
+    \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line('$') |
     \   exe "normal g`\"" |
     \ endif
 
@@ -142,26 +142,16 @@ inoremap <S-Tab> <c-n>
 autocmd VimResized * :wincmd =
 
 " Exclude Javascript files in :Rtags via rails.vim due to warnings when parsing
-let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
+let g:Tlist_Ctags_Cmd = "ctags --exclude='*.js'"
 
-" Index ctags from any project, including those outside Rails
-map <Leader>ct :!ctags -R .<CR>
-
-" vim-rspec mappings
-nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
-nnoremap <Leader>s :call RunNearestSpec()<CR>
-nnoremap <Leader>l :call RunLastSpec()<CR>
-
-" Run commands that require an interactive shell
-nnoremap <Leader>r :RunInInteractiveShell<space>
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
 
 " Configure Syntastic syntax checking to check on open as well as save
-let g:syntastic_check_on_open=1
+let g:syntastic_check_on_open = 1
 
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
+let g:syntastic_html_tidy_ignore_errors = [' proprietary attribute "ng-']
 
 " Set up Syntastic linting
 let g:syntastic_ruby_checkers = ['rubocop']
@@ -169,13 +159,19 @@ let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_javascript_checkers = ['eslint']
 
 " Don't fold sections in Markdown
-let g:vim_markdown_folding_disabled=1
+let g:vim_markdown_folding_disabled = 1
 
 " Open NERDTree with Ctrl + n
 map <C-n> :NERDTreeToggle<CR>
 
 " Open fzf with Ctrl + p
 map <C-p> :Files<CR>
+
+" Run commands that require an interactive shell
+nnoremap <Leader>r :RunInInteractiveShell<space>
+
+" Index ctags from any project, including those outside Rails
+map <Leader>ct :!ctags -R .<CR>
 
 " Local config
 if filereadable($HOME . "/.vimrc.local")
