@@ -13,6 +13,7 @@ Plugin 'gmarik/Vundle.vim'
 " Note that ag and rg are both installed because rg is faster, but ag.vim has
 " some convenient features that vim-ripgrep does not (such as sorting results
 " by directory)
+Plugin 'ap/vim-css-color'                " Show defined colors inline
 Plugin 'christoomey/vim-run-interactive' " Provide an interactive shell
 Plugin 'croaky/vim-colors-github'        " GitHub colorscheme
 Plugin 'janko-m/vim-test'                " Run tests from vim
