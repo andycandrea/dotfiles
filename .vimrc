@@ -136,9 +136,6 @@ let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_javascript_checkers = ['eslint']
 
-" Prevent polyglot from overwriting preferred RSpec highlighting
-let g:polyglot_disabled = ['rspec']
-
 " Don't fold sections in Markdown
 let g:vim_markdown_folding_disabled = 1
 
