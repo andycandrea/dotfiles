@@ -99,10 +99,6 @@ augroup vimrcEx
     \   exe "normal g`\"" |
     \ endif
 
-  " Set syntax highlighting for specific file types
-  autocmd BufRead,BufNewFile Appraisals set filetype=ruby
-  autocmd BufRead,BufNewFile *.md set filetype=markdown
-
   " Enable spellchecking for Markdown
   autocmd FileType markdown setlocal spell
 
@@ -110,7 +106,7 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile *.md setlocal textwidth=80
 
   " Allow stylesheets to autocomplete hyphenated words
-  autocmd FileType css,scss,sass setlocal iskeyword += -
+  autocmd FileType css,scss,sass setlocal iskeyword+=-
 
   " Remove trailing whitespace on write
   autocmd BufWritePre * :%s/\s\+$//e
