@@ -12,16 +12,10 @@ plugins=(battery bundler git rails)
 
 source $ZSH/oh-my-zsh.sh
 
-# Aliases
-alias phs="mix phoenix.server"
-alias pdc="mix ecto.create"
-alias pdm="mix ecto.migrate"
-
 set shell=zsh
 
-export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:/usr/local/bin:$PATH"
 eval "$(rbenv init -)"
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
-export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.pyenv/shims:$PATH"

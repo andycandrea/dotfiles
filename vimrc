@@ -143,11 +143,9 @@ let g:vim_markdown_folding_disabled = 1
 map <C-n> :NERDTreeToggle<CR>
 " Open fzf with Ctrl + p
 map <C-p> :Files<CR>
-" Open buffers with Ctrl + b
-map <C-b> :Buffers<CR>
 
 " Index ctags from any project, including those outside Rails
-map <Leader>ct :!ctags -R .<CR>
+map <Leader>ct :!/usr/local/bin/ctags -R .<CR>
 
 " Run commands that require an interactive shell
 nnoremap <Leader>r :RunInInteractiveShell<space>

@@ -4,14 +4,14 @@ alias ln='ln -v'
 alias mkdir='mkdir -p'
 alias ...='../..'
 alias -g G='| grep'
-alias -g M='| less'
 alias e="$EDITOR"
 alias v="$VISUAL"
 
-# Rails
-alias migrate='rake db:migrate db:rollback && rake db:migrate'
-alias rk='rake'
-alias s='rspec'
+# Web frameworks
+alias phs="mix phoenix.server"
+alias pdc="mix ecto.create"
+alias pdm="mix ecto.migrate"
+alias ds="python ./manage.py runserver"
 
 # Include custom aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local
