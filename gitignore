@@ -11,3 +11,4 @@ tmp/**/*
 tags
 tmux*.log
 ~$*.xls* # Excel temp files
+.byebug_history

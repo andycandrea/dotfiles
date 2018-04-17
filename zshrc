@@ -14,8 +14,5 @@ source $ZSH/oh-my-zsh.sh
 
 set shell=zsh
 
-export PATH="$HOME/.rbenv/bin:/usr/local/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$HOME/.pyenv/shims:/usr/local/bin:$PATH"
 eval "$(rbenv init -)"
-. $HOME/.asdf/asdf.sh
-. $HOME/.asdf/completions/asdf.bash
-export PATH="$HOME/.pyenv/shims:$PATH"

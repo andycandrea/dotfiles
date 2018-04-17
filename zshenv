@@ -15,7 +15,10 @@ export RDBASE=/usr/local/share/RDKit
 # Local config
 [[ -f ~/.zshenv.local ]] && source ~/.zshenv.local
 
+# Use ripgrep for fzf for performance
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
 export RC_ARCHS=x86_64
 
-export PATH="/Users/andy/.bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin:$PATH"
-export PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH"
+export PATH="/Applications/Postgres.app/Contents/Versions/9.6/bin:/Users/andy/.bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin:$PATH"
+export CHROME_HEADLESS_BINARY="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"

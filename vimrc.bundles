@@ -13,11 +13,9 @@ Plugin 'gmarik/Vundle.vim'
 " Note that ag and rg are both installed because rg is faster, but ag.vim has
 " some convenient features that vim-ripgrep does not (such as sorting results
 " by directory)
-Plugin 'albfan/ag.vim'                   " The Silver Searcher
 Plugin 'ap/vim-css-color'                " Show defined colors inline
 Plugin 'christoomey/vim-run-interactive' " Provide an interactive shell
 Plugin 'croaky/vim-colors-github'        " GitHub colorscheme
-Plugin 'elixir-lang/vim-elixir'          " Elixir support
 Plugin 'janko-m/vim-test'                " Run tests from vim
 Plugin 'jremmen/vim-ripgrep'             " Ripgrep
 Plugin 'junegunn/fzf'                    " Fuzzy file finder
@@ -26,10 +24,10 @@ Plugin 'kchmck/vim-coffee-script'        " CoffeeScript support
 Plugin 'mhinz/vim-startify'              " Custom start screen
 Plugin 'pbrisbin/vim-mkdir'              " Automatically create nonexistent directories on write
 Plugin 'plasticboy/vim-markdown'         " Markdown support
+Plugin 'rking/ag.vim'                    " The Silver Searcher
 Plugin 'scrooloose/nerdtree'             " File tree explorer
 Plugin 'scrooloose/syntastic'            " Syntax checking
 Plugin 'tommcdo/vim-lion'                " Align text by character
-Plugin 'tpope/vim-bundler'               " Bundler support
 Plugin 'tpope/vim-commentary'            " Quick commenting
 Plugin 'tpope/vim-endwise'               " Automatically close blocks
 Plugin 'tpope/vim-fugitive'              " Add git support

@@ -11,6 +11,7 @@ alias v="$VISUAL"
 alias phs="mix phoenix.server"
 alias pdc="mix ecto.create"
 alias pdm="mix ecto.migrate"
+
 alias ds="python ./manage.py runserver"
 
 # Include custom aliases
