@@ -16,3 +16,5 @@ set shell=zsh
 
 export PATH="$HOME/.rbenv/bin:$HOME/.pyenv/shims:/usr/local/bin:$PATH"
 eval "$(rbenv init -)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"

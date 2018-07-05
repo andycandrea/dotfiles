@@ -24,7 +24,6 @@ Plugin 'kchmck/vim-coffee-script'        " CoffeeScript support
 Plugin 'mhinz/vim-startify'              " Custom start screen
 Plugin 'pbrisbin/vim-mkdir'              " Automatically create nonexistent directories on write
 Plugin 'plasticboy/vim-markdown'         " Markdown support
-Plugin 'rking/ag.vim'                    " The Silver Searcher
 Plugin 'scrooloose/nerdtree'             " File tree explorer
 Plugin 'scrooloose/syntastic'            " Syntax checking
 Plugin 'tommcdo/vim-lion'                " Align text by character
@@ -36,6 +35,7 @@ Plugin 'tpope/vim-repeat'                " Allow plugin commands to be repeated 
 Plugin 'tpope/vim-surround'              " Easy surrounding character modifications
 Plugin 'vim-scripts/ctags.vim'           " Ctags support
 Plugin 'vim-scripts/django.vim'          " Django support
+Plugin 'vim-scripts/indentpython.vim'    " Python auto-indentation
 
 if filereadable(expand('~/.vimrc.bundles.local'))
   source ~/.vimrc.bundles.local

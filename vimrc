@@ -63,12 +63,6 @@ endif
 highlight NonText guibg=#060606
 highlight Folded  guibg=#0A0A0A guifg=#9090D0
 
-" CtrlP replacement - requires fzf installed via Homebrew and the vim Plug
-" loader
-" call plug#begin('~/.vim/plugged')
-" Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-" call plug#end()
-
 " Keep plugins in `~/.vimrc.bundles`
 if filereadable(expand('~/.vimrc.bundles'))
   source ~/.vimrc.bundles
@@ -102,8 +96,8 @@ augroup vimrcEx
   " Enable spellchecking for Markdown
   autocmd FileType markdown setlocal spell
 
-  " Automatically wrap at 80 characters for Markdown
-  autocmd BufRead,BufNewFile *.md setlocal textwidth=80
+  " Automatically wrap at 80 characters for Markdown, text
+  autocmd BufRead,BufNewFile *.md,*.txt setlocal textwidth=80
 
   " Allow stylesheets to autocomplete hyphenated words
   autocmd FileType css,scss,sass setlocal iskeyword+=-
@@ -115,14 +109,17 @@ augroup END
 " Close vim if the only remaining split is NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
+" Use RipGrep
+if executable('rg')
+  " Use Rg over Grep
+  set grepprg="rg --vimgrep --smart-case --sort-files"
 endif
 
 " Exclude JavaScript files in :Rtags via rails.vim due to warnings when parsing
 let g:Tlist_Ctags_Cmd = "ctags --exclude='*.js'"
+
+" Configure RipGrep
+let g:rg_command="rg --vimgrep --smart-case --sort-files"
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
@@ -138,6 +135,10 @@ let g:syntastic_eruby_ruby_quiet_messages = { 'regex': 'possibly useless use of 
 let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_javascript_checkers = ['eslint']
+let python_highlight_all=1
+
+" Ignore .pyc files in NERDTree
+let NERDTreeIgnore=['\.pyc$', '\~$']
 
 " Don't fold sections in Markdown
 let g:vim_markdown_folding_disabled = 1
@@ -149,9 +150,6 @@ map <C-p> :Files<CR>
 
 " Index ctags from any project, including those outside Rails
 map <Leader>ct :!/usr/local/bin/ctags -R .<CR>
-
-" Run commands that require an interactive shell
-nnoremap <Leader>r :RunInInteractiveShell<space>
 
 " vim-test mappings
 nnoremap <Leader>t :TestFile<CR>

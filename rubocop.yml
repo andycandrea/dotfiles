@@ -11,6 +11,8 @@ AllCops:
 
 Layout/ClassStructure:
   Enabled: true
+Layout/EmptyLineAfterGuardClause:
+  Enabled: true
 Layout/FirstArrayElementLineBreak:
   Enabled: true
 Layout/FirstHashElementLineBreak:
@@ -122,8 +124,6 @@ Style/DocumentationMethod:
   Enabled: true
   Exclude:
     - '**/controllers/**/*'
-Style/EmptyLineAfterGuardClause:
-  Enabled: true
 Style/EmptyMethod:
   EnforcedStyle: expanded
 Style/ImplicitRuntimeError:
