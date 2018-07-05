@@ -1,3 +1,8 @@
+# Configuration last updated for:
+#
+# rubocop 0.57.2
+# rubocop-rspec 1.27.0
+
 require: rubocop-rspec
 
 AllCops:
@@ -129,6 +134,8 @@ Style/EmptyMethod:
 Style/ImplicitRuntimeError:
   Enabled: true
 Style/InlineComment:
+  Enabled: true
+Style/IpAddresses:
   Enabled: true
 Style/Lambda:
   EnforcedStyle: literal
