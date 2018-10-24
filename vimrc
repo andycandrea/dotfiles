@@ -113,13 +113,16 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 if executable('rg')
   " Use Rg over Grep
   set grepprg="rg --vimgrep --smart-case --sort-files"
+  let g:ackprg = "rg --vimgrep --smart-case --sort-files"
+
+  " Use aliases to allow Rg instead of Ack
+  for command in ['Ack', 'AckAdd', 'AckFromSearch', 'LAck', 'LAckAdd', 'AckFile', 'AckHelp', 'LAckHelp', 'AckWindow', 'LAckWindow']
+    exe 'command ' . substitute(command, 'Ack', 'Rg', "") . ' ' . command
+  endfor
 endif
 
 " Exclude JavaScript files in :Rtags via rails.vim due to warnings when parsing
 let g:Tlist_Ctags_Cmd = "ctags --exclude='*.js'"
-
-" Configure RipGrep
-let g:rg_command="rg --vimgrep --smart-case --sort-files"
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
@@ -136,6 +139,7 @@ let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_javascript_checkers = ['eslint']
 let python_highlight_all=1
+let g:syntastic_javascript_eslint_exe = substitute(system('npm bin'), '\n\+$', '', '')."/eslint"
 
 " Ignore .pyc files in NERDTree
 let NERDTreeIgnore=['\.pyc$', '\~$']

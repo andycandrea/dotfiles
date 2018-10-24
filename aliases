@@ -14,5 +14,8 @@ alias pdm="mix ecto.migrate"
 
 alias ds="python ./manage.py runserver"
 
+# Tools
+alias bup="brew update && brew upgrade && brew cleanup"
+
 # Include custom aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local
