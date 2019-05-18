@@ -14,7 +14,10 @@ source $ZSH/oh-my-zsh.sh
 
 set shell=zsh
 
-export PATH="$HOME/.rbenv/bin:$HOME/.pyenv/shims:/usr/local/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$HOME/jdk-11/bin:$HOME/.rbenv/bin:$HOME/.pyenv/bin:/usr/local/bin:$PATH"
 eval "$(rbenv init -)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
+[[ -f ~/.aliases ]] && source ~/.aliases
