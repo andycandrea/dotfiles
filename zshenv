@@ -2,12 +2,6 @@
 export VISUAL=vim
 export EDITOR=$VISUAL
 
-# Postgres settings
-export POSTGRES_USER=andy
-export POSTGRES_PASS=
-export APP_HOST=localhost
-export APP_PORT=
-
 # mkdir .git/safe in the root of repositories you trust
 export PATH=".git/safe/../../bin:$PATH"
 
@@ -16,6 +10,9 @@ export RDBASE=/usr/local/share/RDKit
 
 # Local config
 [[ -f ~/.zshenv.local ]] && source ~/.zshenv.local
+
+# Things not to keep in git
+[[ -f ~/.zsh_secrets ]] && source ~/.zsh_secrets
 
 # Use ripgrep for fzf for performance
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'

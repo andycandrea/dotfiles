@@ -45,6 +45,8 @@ set lazyredraw                      " Only redraw screen when necessary
 set diffopt+=vertical               " Always use vertical diffs
 set wildmode=list:longest,list:full " Show all matching options for file completion
 set list listchars=tab:»·,trail:·   " Display extra whitespace
+set wrap                            " Wrap lines that go beyond the edge of the screen
+set clipboard=unnamed               " Yank to clipboard
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
@@ -114,11 +116,6 @@ if executable('rg')
   " Use Rg over Grep
   set grepprg="rg --vimgrep --smart-case --sort-files"
   let g:ackprg = "rg --vimgrep --smart-case --sort-files"
-
-  " Use aliases to allow Rg instead of Ack
-  for command in ['Ack', 'AckAdd', 'AckFromSearch', 'LAck', 'LAckAdd', 'AckFile', 'AckHelp', 'LAckHelp', 'AckWindow', 'LAckWindow']
-    exe 'command ' . substitute(command, 'Ack', 'Rg', "") . ' ' . command
-  endfor
 endif
 
 " Exclude JavaScript files in :Rtags via rails.vim due to warnings when parsing
@@ -127,19 +124,10 @@ let g:Tlist_Ctags_Cmd = "ctags --exclude='*.js'"
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
 
-" Configure Syntastic syntax checking to check on open as well as save
-let g:syntastic_check_on_open = 1
-
-" Ignore inconsequential errors
-let g:syntastic_html_tidy_ignore_errors = [' proprietary attribute "ng-']
-let g:syntastic_eruby_ruby_quiet_messages = { 'regex': 'possibly useless use of a variable in void context' }
-
-" Set up Syntastic linting
-let g:syntastic_ruby_checkers = ['rubocop']
-let g:syntastic_python_checkers = ['pylint']
-let g:syntastic_javascript_checkers = ['eslint']
-let python_highlight_all=1
-let g:syntastic_javascript_eslint_exe = substitute(system('npm bin'), '\n\+$', '', '')."/eslint"
+" Set up Ale linting
+let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['rubocop'], 'python': ['pylint', 'flake8'] }
+let g:ale_lint_delay = 800
+let g:ale_set_highlights = 0
 
 " Ignore .pyc files in NERDTree
 let NERDTreeIgnore=['\.pyc$', '\~$']
@@ -153,11 +141,11 @@ map <C-n> :NERDTreeToggle<CR>
 map <C-p> :Files<CR>
 
 " Index ctags from any project, including those outside Rails
-map <Leader>ct :!/usr/local/bin/ctags -R .<CR>
+map <leader>ct :!/usr/local/bin/ctags -R .<CR>
 
 " vim-test mappings
-nnoremap <Leader>t :TestFile<CR>
-nnoremap <Leader>l :TestLast<CR>
+nnoremap <leader>t :TestFile<CR>
+nnoremap <leader>l :TestLast<CR>
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>

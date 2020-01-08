@@ -11,16 +11,17 @@ Plugin 'gmarik/Vundle.vim'
 
 " Define bundles via Github repos
 Plugin 'ap/vim-css-color'                    " Show defined colors inline
+Plugin 'dense-analysis/ale'                  " Async syntax highlighting/linting
 Plugin 'janko-m/vim-test'                    " Run tests from vim
 Plugin 'junegunn/fzf'                        " Fuzzy file finder
 Plugin 'junegunn/fzf.vim'
+Plugin 'kamykn/spelunker.vim'                " Smarter spell checking
 Plugin 'kchmck/vim-coffee-script'            " CoffeeScript support
 Plugin 'mileszs/ack.vim'                     " Searcher
-Plugin 'mtscout6/syntastic-local-eslint.vim' " Use local eslint installation rather than global
+Plugin 'mxw/vim-jsx'                         " JSX support
 Plugin 'pbrisbin/vim-mkdir'                  " Automatically create nonexistent directories on write
 Plugin 'plasticboy/vim-markdown'             " Markdown support
 Plugin 'scrooloose/nerdtree'                 " File tree explorer
-Plugin 'scrooloose/syntastic'                " Syntax checking
 Plugin 'tommcdo/vim-lion'                    " Align text by character
 Plugin 'tpope/vim-commentary'                " Quick commenting
 Plugin 'tpope/vim-endwise'                   " Automatically close blocks

@@ -8,7 +8,7 @@ ZSH_THEME='sporty_256'
 CASE_SENSITIVE='true'
 
 # oh-my-zsh plugins
-plugins=(battery bundler git rails)
+plugins=(bundler git rails)
 
 source $ZSH/oh-my-zsh.sh
 
