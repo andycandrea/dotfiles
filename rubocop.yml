@@ -1,19 +1,26 @@
-# Configuration last updated for:
-#
-# rubocop 0.57.2
-# rubocop-rspec 1.27.0
-
-require: rubocop-rspec
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
 
 AllCops:
   Exclude:
+    - '**/bin/**/*'
+    - '**/config/**/*'
     - '**/node_modules/**/*'
     - '**/script/**/*'
     - '**/spec/test_app/**/*'
+    - '**/*.gemspec'
+    - '**/Gemfile'
+    - '**/Guardfile'
+    - '**/Rakefile'
+    - '**/Vagrantfile'
     - '**/db/schema.rb'
-  TargetRubyVersion: 2.5
-  TargetRailsVersion: 5.2
+  TargetRubyVersion: 2.7
+  TargetRailsVersion: 6.0
 
+Layout/CaseIndentation:
+  IndentOneStep: true
 Layout/ClassStructure:
   Enabled: true
 Layout/EmptyLineAfterGuardClause:
@@ -25,6 +32,10 @@ Layout/FirstHashElementLineBreak:
 Layout/FirstMethodArgumentLineBreak:
   Enabled: true
 Layout/FirstMethodParameterLineBreak:
+  Enabled: true
+Layout/MultilineHashKeyLineBreaks:
+  Enabled: true
+Layout/MultilineMethodArgumentLineBreaks:
   Enabled: true
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
@@ -39,6 +50,8 @@ Layout/SpaceBeforeFirstArg:
 Lint/AmbiguousBlockAssociation:
   Exclude:
     - '**/spec/**/*'
+Lint/NumberConversion:
+  Enabled: true
 
 Metrics/AbcSize:
   Exclude:
@@ -47,27 +60,42 @@ Metrics/BlockLength:
   Exclude:
     - '**/config/**/*'
     - '**/db/migrate/**/*'
+    - '**/db/seeds/**/*'
     - '**/spec/**/*'
 Metrics/CyclomaticComplexity:
   Max: 5
 Metrics/LineLength:
   Exclude:
+    - '**/bin/**/*'
+    - '**/config/**/*'
     - '**/db/migrate/**/*'
     - '**/spec/**/*'
   Max: 80
 Metrics/MethodLength:
   Exclude:
     - '**/db/migrate/**/*'
+Metrics/ModuleLength:
+  Exclude:
+    - '**/db/seeds/**/*'
 Metrics/PerceivedComplexity:
   Max: 5
 
-Naming/UncommunicativeBlockParamName:
+Naming/AccessorMethodName:
+  Exclude:
+    - '**/app/controllers/**/*'
+Naming/BlockParameterName:
   AllowedNames:
     - id
+    - x
+    - y
+    - k
+    - v
     - _
-Naming/UncommunicativeMethodParamName:
+Naming/MethodParameterName:
   AllowedNames:
     - id
+    - x
+    - y
     - _
 Naming/VariableNumber:
   EnforcedStyle: snake_case
@@ -76,13 +104,21 @@ Naming/VariableNumber:
 # `foo.casecmp(bar).zero?`
 Performance/Casecmp:
   Enabled: false
-
-Rails:
+Performance/CaseWhenSplat:
   Enabled: true
+
+Rails/Blank:
+  NilOrEmpty: false
+  UnlessPresent: false
+Rails/FilePath:
+  EnforcedStyle: slashes
 # Keyword arguments aren't functionally equivalent to positional arguments.
 # Using keyword arguments in controller specs makes the param keys strings and
 # not symbols, even if adding `.with_indifferent_access`.
 Rails/HttpPositionalArguments:
+  Enabled: false
+# There are often no reasonable defaults for not null columns
+Rails/NotNullColumn:
   Enabled: false
 Rails/Output:
   Exclude:
@@ -90,20 +126,39 @@ Rails/Output:
     - '**/lib/tasks/**/*'
 Rails/SaveBang:
   Enabled: true
+Rails/UniqueValidationWithoutIndex:
+  Enabled: true
 Rails/UniqBeforePluck:
   EnforcedStyle: aggressive
 
+# Prefer eq
+RSpec/BeEql:
+  Enabled: false
+RSpec/ContextWording:
+  Prefixes:
+    - by
+    - when
+    - with
+    - without
 # No class to describe for feature tests
 RSpec/DescribeClass:
   Exclude:
     - '**/spec/features/**/*'
+RSpec/EmptyLineAfterExample:
+  Enabled: false
 RSpec/ExampleLength:
   Exclude:
     - '**/spec/features/**/*'
 RSpec/ExpectChange:
   EnforcedStyle: block
-# Prefer `subject` below `let`
+RSpec/ImplicitSubject:
+  Enabled: false
 RSpec/LeadingSubject:
+  Enabled: false
+RSpec/LetSetup:
+  Exclude:
+    - '**/spec/features/**/*'
+RSpec/MessageChain:
   Enabled: false
 RSpec/MultipleExpectations:
   Exclude:
@@ -115,6 +170,8 @@ RSpec/NestedGroups:
 RSpec/ReturnFromStub:
   EnforcedStyle: and-return
 
+Style/AccessModifierDeclarations:
+  EnforcedStyle: inline
 Style/AutoResourceCleanup:
   Enabled: true
 Style/CollectionMethods:
@@ -122,18 +179,30 @@ Style/CollectionMethods:
 Style/ConditionalAssignment:
   EnforcedStyle: assign_inside_condition
   IncludeTernaryExpressions: false
+Style/DateTime:
+  Enabled: true
 Style/Documentation:
   Exclude:
     - '**/controllers/**/*'
+    - '**/app/helpers/application_helper.rb'
+    - '**/app/mailers/application_mailer.rb'
+    - '**/app/models/application_record.rb'
 Style/DocumentationMethod:
   Enabled: true
   Exclude:
+    - '**/config/**/*'
     - '**/controllers/**/*'
+    - '**/db/**/*'
+    - '**/spec/**/*'
 Style/EmptyMethod:
   EnforcedStyle: expanded
-Style/ImplicitRuntimeError:
+Style/FormatStringToken:
+  Enabled: false
+Style/HashEachMethods:
   Enabled: true
-Style/InlineComment:
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
   Enabled: true
 Style/IpAddresses:
   Enabled: true
@@ -152,6 +221,9 @@ Style/RedundantBegin:
   Enabled: true
 Style/Send:
   Enabled: true
+# Prevents self-documentation
+Style/SingleLineBlockParams:
+  Enabled: false
 Style/StringMethods:
   Enabled: true
 Style/ZeroLengthPredicate:

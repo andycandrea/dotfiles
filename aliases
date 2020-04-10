@@ -7,15 +7,11 @@ alias -g G='| grep'
 alias e="$EDITOR"
 alias v="$VISUAL"
 
-# Web frameworks
-alias phs="mix phoenix.server"
-alias pdc="mix ecto.create"
-alias pdm="mix ecto.migrate"
-
 alias ds="python ./manage.py runserver"
 
 # Tools
 alias bup="brew update && brew upgrade && brew cleanup"
+alias cat="bat"
 
 # Include custom aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local

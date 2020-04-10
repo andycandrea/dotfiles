@@ -125,7 +125,8 @@ let g:Tlist_Ctags_Cmd = "ctags --exclude='*.js'"
 let g:html_indent_tags = 'li\|p'
 
 " Set up Ale linting
-let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['rubocop'], 'python': ['pylint', 'flake8'] }
+let g:ale_linters = { 'Dockerfile': ['dockerfile_lint'], 'erb': ['ruumba'], 'javascript': ['eslint'], 'markdown': ['write-good'], 'python': ['pylint', 'flake8'], 'ruby': ['debride', 'rubocop'], 'scss': ['stylelint'], 'sql': ['sqlint'] }
+let g:ale_ruby_debride_options = "--rails"
 let g:ale_lint_delay = 800
 let g:ale_set_highlights = 0
 

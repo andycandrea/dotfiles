@@ -14,15 +14,20 @@
    },
   "extends": "airbnb",
   "plugins": [
-    "react",
-    "jsx-a11y",
     "import",
-    "jest"
+    "jest",
+    "jsx-a11y",
+    "react"
   ],
   "rules": {
-    "comma-dangle": ["error", "never"],
     "class-methods-use-this": "off",
+    "comma-dangle": ["error", "never"],
     "function-paren-newline": ["error", "consistent"],
+    "import/no-extraneous-dependencies": "error",
+    "no-param-reassign": "warn",
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "no-underscore-dangle": "off",
+    "no-unused-vars": [2, {"args": "all", "argsIgnorePattern": "^_"}],
     "prefer-destructuring": "off"
   }
 }

@@ -19,5 +19,4 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 
 export RC_ARCHS=x86_64
 
-export PATH="/Applications/Postgres.app/Contents/Versions/9.6/bin:/Users/andy/.bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin:/usr/local/ncbi/blast/bin:$PATH"
 export CHROME_HEADLESS_BINARY="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"

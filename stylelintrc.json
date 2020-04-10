@@ -1,0 +1,16 @@
+{
+  "extends": ["stylelint-config-sass-guidelines"],
+  "plugins": [
+    "stylelint-a11y",
+    "stylelint-csstree-validator",
+    "stylelint-images",
+    "stylelint-no-indistinguishable-colors",
+    "stylelint-no-unsupported-browser-features",
+    "stylelint-order"
+  ],
+  "rules": {
+    "color-hex-case": "upper",
+    "color-hex-length": "long",
+    "selector-list-comma-newline-after": "always-multi-line"
+  }
+}
