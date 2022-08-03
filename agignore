@@ -6,3 +6,4 @@ webpack
 bundle.js
 bundle.js.map
 *.min.js
+app/assets/builds/
