@@ -14,18 +14,21 @@ Plug 'junegunn/fzf.vim'
 Plug 'kamykn/spelunker.vim'                " Smarter spell checking
 Plug 'mileszs/ack.vim'                     " Searcher
 Plug 'pbrisbin/vim-mkdir'                  " Automatically create nonexistent directories on write
+Plug 'posva/vim-vue'                       " Vue syntax highlighting
 Plug 'scrooloose/nerdtree'                 " File tree explorer
 Plug 'sheerun/vim-polyglot'                " Language support
+Plug 'Shougo/ddc.vim'                      " Completion
+Plug 'Shougo/ddc-around'                   " DDC Source
+Plug 'Shougo/ddc-matcher_head'             " DDC Filter
+Plug 'Shougo/ddc-sorter_rank'              " DDC Filter
 Plug 'tommcdo/vim-lion'                    " Align text by character
-Plug 'tpope/vim-commentary'                " Quick commenting
+Plug 'tpope/vim-commentary'                " Quick commenting (use gc)
 Plug 'tpope/vim-endwise'                   " Automatically close blocks
 Plug 'tpope/vim-fugitive'                  " Add git support
 Plug 'tpope/vim-rails'                     " Rails support
 Plug 'tpope/vim-repeat'                    " Allow plugin commands to be repeated with `.`
 Plug 'tpope/vim-surround'                  " Easy surrounding character modifications
-Plug 'vim-scripts/ctags.vim'               " Ctags support
-Plug 'vim-scripts/django.vim'              " Django support
-Plug 'vim-scripts/indentpython.vim'        " Python auto-indentation
+Plug 'vim-denops/denops.vim'               " Deno support; needed for ddc
 
 if filereadable(expand('~/.vimrc.bundles.local'))
   source ~/.vimrc.bundles.local

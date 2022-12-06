@@ -1,5 +1,8 @@
 {
-  "extends": ["stylelint-config-sass-guidelines"],
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-config-standard-vue/scss"
+  ],
   "plugins": [
     "stylelint-a11y",
     "stylelint-csstree-validator",
@@ -9,7 +12,6 @@
     "stylelint-order"
   ],
   "rules": {
-    "color-hex-case": "upper",
     "color-hex-length": "long",
     "selector-list-comma-newline-after": "always-multi-line"
   }

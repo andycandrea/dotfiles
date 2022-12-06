@@ -1,7 +1,6 @@
-[init]
-  templatedir = ~/.git_template
 [push]
-  default = current
+  default = simple
+  autoSetupRemote = true
 [color]
   ui = auto
 [alias]
@@ -19,28 +18,37 @@
   st = status
   up = !git fetch origin && git rebase origin/master
 [core]
-  excludesfile = /Users/andy/.gitignore
+	excludesfile = /Users/aandrea/.gitignore_global
   autocrlf = input
-  pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
+  pager = diffr | less
 [merge]
   ff = only
   conflictstyle = diff3
 [include]
   path = .gitconfig.local
 [commit]
-  template = ~/.gitmessage
+	template = ~/.gitmessage
 [fetch]
   prune = true
 [difftool "sourcetree"]
-  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-  path =
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
 [mergetool "sourcetree"]
-  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-  trustExitCode = true
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
 [user]
-  name = Andy Andrea
-  email = andy.andrea@scimedsolutions.com
+	name = Andy Andrea
+	email = aandrea@panoramaed.com
 [diff]
   compactionHeuristic = true
 [interactive]
-  diffFilter = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight
+  diffFilter = diffr
+[submodule]
+  recurse = true
+[status]
+  submodulesummary = true
+[filter "lfs"]
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f

@@ -47,6 +47,8 @@ set wildmode=list:longest,list:full " Show all matching options for file complet
 set list listchars=tab:»·,trail:·   " Display extra whitespace
 set wrap                            " Wrap lines that go beyond the edge of the screen
 set clipboard=unnamed               " Yank to clipboard
+set encoding=utf8                   " UTF-8 encoding
+set colorcolumn=80                  " Color 80th column
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
@@ -64,10 +66,63 @@ endif
 " Color scheme
 highlight NonText guibg=#060606
 highlight Folded  guibg=#0A0A0A guifg=#9090D0
+highlight ColorColumn ctermbg=6
+
+" Turn off built-in HTML highlighting to get rid of annoying <i> behavior and
+" fall back to plugins
+let html_no_rendering=1
 
 " Keep plugins in `~/.vimrc.bundles`
 if filereadable(expand('~/.vimrc.bundles'))
   source ~/.vimrc.bundles
+
+  " DDC Section
+  " Customize global settings
+  " Use around source.
+  " https://github.com/Shougo/ddc-around
+  call ddc#custom#patch_global('sources', ['around'])
+
+  " Use matcher_head and sorter_rank.
+  " https://github.com/Shougo/ddc-matcher_head
+  " https://github.com/Shougo/ddc-sorter_rank
+  call ddc#custom#patch_global('sourceOptions', {
+        \ '_': {
+        \   'matchers': ['matcher_head'],
+        \   'sorters': ['sorter_rank']},
+        \ })
+
+  " Change source options
+  call ddc#custom#patch_global('sourceOptions', {
+        \ 'around': {'mark': 'A'},
+        \ })
+  call ddc#custom#patch_global('sourceParams', {
+        \ 'around': {'maxSize': 500},
+        \ })
+
+  " Customize settings on a filetype
+  call ddc#custom#patch_filetype(['c', 'cpp'], 'sources', ['around', 'clangd'])
+  call ddc#custom#patch_filetype(['c', 'cpp'], 'sourceOptions', {
+        \ 'clangd': {'mark': 'C'},
+        \ })
+  call ddc#custom#patch_filetype('markdown', 'sourceParams', {
+        \ 'around': {'maxSize': 100},
+        \ })
+
+  " Mappings
+
+  " <TAB>: completion.
+  inoremap <silent><expr> <TAB>
+  \ ddc#map#pum_visible() ? '<C-n>' :
+  \ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
+  \ '<TAB>' : ddc#map#manual_complete()
+
+  " <S-TAB>: completion back.
+  inoremap <expr><S-TAB>  ddc#map#pum_visible() ? '<C-p>' : '<C-h>'
+
+  " Use ddc.
+  call ddc#enable()
+
+  " End DDC Config
 endif
 
 " Tab completion
@@ -118,18 +173,21 @@ if executable('rg')
   let g:ackprg = "rg --vimgrep --smart-case --sort-files"
 endif
 
-" Exclude JavaScript files in :Rtags via rails.vim due to warnings when parsing
-let g:Tlist_Ctags_Cmd = "ctags --exclude='*.js'"
-
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
 
 " Set up Ale linting
-let g:ale_linters = { 'Dockerfile': ['dockerfile_lint'], 'javascript': ['eslint'], 'markdown': ['write-good'], 'python': ['pylint', 'flake8'], 'ruby': ['debride', 'rubocop'], 'scss': ['stylelint'], 'sql': ['sqlint'] }
-let g:ale_ruby_debride_options = "--rails"
-let g:ale_python_pylint_options = '--load-plugins=pylint_django'
+let g:ale_linter_aliases = {'vue': ['vue', 'css', 'javascript', 'scss', 'html']}
+let g:ale_linters = { 'css': ['csslint'], 'Dockerfile': ['dockerfile_lint'], 'haml': ['hamllint'], 'javascript': ['eslint', 'jslint'], 'markdown': ['write-good'], 'python': ['flake8'], 'ruby': ['rubocop'], 'scss': ['scsslint', 'stylelint'], 'sql': ['sqlint'], 'vue': ['eslint', 'stylelint'] }
+
 let g:ale_lint_delay = 800
 let g:ale_set_highlights = 0
+let $BUNDLE_GEMFILE = '.overcommit/Gemfile'
+let g:ale_ruby_rubocop_executable = 'bundle'
+let g:ale_css_stylelint_options = '--config /Users/aandrea/.eslintrc'
+
+" Only load SCSS preprocessor for Vue files (plus JS/HTML/CSS)
+let g:vue_pre_processors = ['scss']
 
 " Ignore .pyc files in NERDTree
 let NERDTreeIgnore=['\.pyc$', '\~$']
@@ -143,7 +201,7 @@ map <C-n> :NERDTreeToggle<CR>
 map <C-p> :Files<CR>
 
 " Index ctags from any project, including those outside Rails
-map <leader>ct :!/usr/local/bin/ctags -R .<CR>
+map <leader>ct :!/opt/homebrew/bin/ctags --options=/Users/aandrea/.ctags.d/.ctags .<CR>
 
 " vim-test mappings
 nnoremap <leader>t :TestFile<CR>

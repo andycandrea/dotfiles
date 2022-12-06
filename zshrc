@@ -14,15 +14,6 @@ source $ZSH/oh-my-zsh.sh
 
 set shell=zsh
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$HOME/.rbenv/bin:$HOME/.pyenv/bin:$PATH"
-eval "$(rbenv init -)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
 [[ -f ~/.aliases ]] && source ~/.aliases
-[[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn
+source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+source /opt/homebrew/opt/chruby/share/chruby/auto.sh
