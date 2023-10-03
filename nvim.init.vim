@@ -1,18 +1,9 @@
-" Use Vim settings, rather then Vi settings. This setting must be as early as
-" possible, as it has side effects.
-set nocompatible
-
-set background=dark
+" Place in ~/.config/nvim/init.vim along with coc-settings.json
 
 " Leader
 let mapleader = ' '
 
 filetype plugin indent on
-
-" Set undo file to allow undoing even after closing and reopening vim
-silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
-set undofile
-set undodir=~/.vim/undo
 
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of dotfiles using rcm.
@@ -25,21 +16,16 @@ set shiftwidth=2
 set shiftround  " Indent to the next column that's a multiple of shiftwidth
 set expandtab
 set backspace=2 " Backspace deletes like most programs in insert mode
-set smarttab
 
 " Numbers
 set number
 set numberwidth=5
 
 " General preferences
+set undofile
 set nobackup
 set nowritebackup
 set noswapfile
-set history=50                      " Keep 50 entries in history tables
-set ruler                           " Show the cursor position at all times
-set showcmd                         " Display incomplete commands
-set incsearch                       " Incremental searching
-set laststatus=2                    " Always display the status line
 set autowrite                       " Automatically :write before running commands
 set lazyredraw                      " Only redraw screen when necessary
 set diffopt+=vertical               " Always use vertical diffs
@@ -47,8 +33,8 @@ set wildmode=list:longest,list:full " Show all matching options for file complet
 set list listchars=tab:»·,trail:·   " Display extra whitespace
 set wrap                            " Wrap lines that go beyond the edge of the screen
 set clipboard=unnamed               " Yank to clipboard
-set encoding=utf8                   " UTF-8 encoding
 set colorcolumn=80                  " Color 80th column
+set updatetime=300                  " Reduce delay
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
@@ -56,12 +42,6 @@ set splitright
 
 " Resize panes when window size changes
 autocmd VimResized * :wincmd =
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if (&t_Co > 2 || has('gui_running')) && !exists('syntax_on')
-  syntax enable
-endif
 
 " Color scheme
 highlight NonText guibg=#060606
@@ -72,9 +52,9 @@ highlight ColorColumn ctermbg=6
 " fall back to plugins
 let html_no_rendering=1
 
-" Keep plugins in `~/.vimrc.bundles`
-if filereadable(expand('~/.vimrc.bundles'))
-  source ~/.vimrc.bundles
+" Keep plugins in `~/.nvimrc.bundles`
+if filereadable(expand('~/.nvimrc.bundles'))
+  source ~/.nvimrc.bundles
 endif
 
 augroup vimrcEx
@@ -114,6 +94,27 @@ endif
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
 
+" Tab complete with coc
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "<CR>"
+
+
+" Go to code definition
+nmap <silent> gf <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
 " Set up Ale linting
 let g:ale_linter_aliases = {'vue': ['vue', 'css', 'javascript', 'scss', 'html']}
 let g:ale_linters = { 'css': ['csslint'], 'Dockerfile': ['dockerfile_lint'], 'haml': ['hamllint'], 'javascript': ['eslint', 'jslint'], 'markdown': ['write-good'], 'python': ['flake8'], 'ruby': ['rubocop'], 'scss': ['scsslint', 'stylelint'], 'sql': ['sqlint'], 'vue': ['eslint', 'stylelint'] }
@@ -132,6 +133,10 @@ let NERDTreeIgnore=['\.pyc$', '\~$']
 
 " Don't fold sections in Markdown
 let g:vim_markdown_folding_disabled = 1
+
+" Ruby indentation settings
+let g:ruby_indent_access_modifier_style = 'normal'
+let g:ruby_indent_block_style = 'do'
 
 " Open NERDTree with Ctrl + n
 map <C-n> :NERDTreeToggle<CR>
@@ -153,8 +158,3 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
-
-" Local config
-if filereadable($HOME . '/.vimrc.local')
-  source ~/.vimrc.local
-endif

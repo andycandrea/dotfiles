@@ -12,6 +12,7 @@ Plug 'junegunn/fzf'                        " Fuzzy file finder
 Plug 'junegunn/fzf.vim'
 Plug 'kamykn/spelunker.vim'                " Smarter spell checking
 Plug 'mileszs/ack.vim'                     " Searcher
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " Autocomplete
 Plug 'pbrisbin/vim-mkdir'                  " Automatically create nonexistent directories on write
 Plug 'posva/vim-vue'                       " Vue syntax highlighting
 Plug 'scrooloose/nerdtree'                 " File tree explorer
@@ -23,10 +24,6 @@ Plug 'tpope/vim-fugitive'                  " Add git support
 Plug 'tpope/vim-rails'                     " Rails support
 Plug 'tpope/vim-repeat'                    " Allow plugin commands to be repeated with `.`
 Plug 'tpope/vim-surround'                  " Easy surrounding character modifications
-
-if filereadable(expand('~/.vimrc.bundles.local'))
-  source ~/.vimrc.bundles.local
-endif
 
 call plug#end()
 filetype on

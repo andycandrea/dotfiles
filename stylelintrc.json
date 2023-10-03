@@ -1,7 +1,8 @@
 {
   "extends": [
     "stylelint-config-standard-scss",
-    "stylelint-config-standard-vue/scss"
+    "stylelint-config-standard-vue/scss",
+    "stylelint-a11y/recommended"
   ],
   "plugins": [
     "stylelint-a11y",
@@ -12,7 +13,21 @@
     "stylelint-order"
   ],
   "rules": {
-    "color-hex-length": "long",
-    "selector-list-comma-newline-after": "always-multi-line"
+    "color-named": "never",
+    "declaration-colon-space-after": "always",
+    "declaration-no-important": true,
+    "function-comma-space-after": "always",
+    "function-parentheses-space-inside": "never",
+    "function-url-no-scheme-relative": true,
+    "max-nesting-depth": 4,
+    "no-eol-whitespace": true,
+    "number-leading-zero": null,
+    "selector-list-comma-newline-before": "always-multi-line",
+    "selector-max-specificity": "4,4,4",
+    "selector-no-qualifying-type": true,
+    "value-no-vendor-prefix": true,
+    "scss/comment-no-loud": true,
+    "scss/selector-no-redundant-nesting-selector": true
+    "selector-list-comma-newline-after": null
   }
 }

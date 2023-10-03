@@ -7,3 +7,4 @@ bundle.js
 bundle.js.map
 *.min.js
 app/assets/builds/
+CODE_ANALYSIS/

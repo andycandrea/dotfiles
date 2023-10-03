@@ -1,5 +1,5 @@
-# use vim as the visual editor
-export VISUAL=vim
+# use nvim as the visual editor
+export VISUAL=nvim
 export EDITOR=$VISUAL
 
 # mkdir .git/safe in the root of repositories you trust
